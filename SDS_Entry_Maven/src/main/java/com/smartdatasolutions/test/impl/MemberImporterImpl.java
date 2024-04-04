@@ -18,26 +18,34 @@ public class MemberImporterImpl implements MemberImporter {
 		 * Implement the missing logic
 		 */
 
-		try (BufferedReader br = new BufferedReader( new FileReader( inputFile ) )) {
+		try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				String id = line.substring(0, 12).trim();
-				String lastName = line.substring(12, 37).trim();
-				String firstName = line.substring(37, 62).trim();
-				String address = line.substring(62, 92).trim();
-				String city = line.substring(92, 112).trim();
-				String state = line.substring(112, 116).trim();
-				String zip = line.substring(116).trim();
-				Member addMember = new Member();
-				addMember.setId(id);
-				addMember.setFirstName(firstName);
-				addMember.setLastName(lastName);
-				addMember.setAddress(address);
-				addMember.setCity(city);
-				addMember.setZip(zip);
-				members.add(addMember);
+				try {
+					String id = line.substring(0, 12).trim();
+					String lastName = line.substring(12, 37).trim();
+					String firstName = line.substring(37, 62).trim();
+					String address = line.substring(62, 92).trim();
+					String city = line.substring(92, 112).trim();
+					String state = line.substring(112, 116).trim();
+					String zip = line.substring(116).trim();
+
+					Member addMember = new Member();
+					addMember.setId(id);
+					addMember.setFirstName(firstName);
+					addMember.setLastName(lastName);
+					addMember.setAddress(address);
+					addMember.setCity(city);
+					addMember.setState(state);
+					addMember.setZip(zip);
+					members.add(addMember);
+				} catch (IndexOutOfBoundsException e) {
+					// Log or handle the error for invalid input line
+					System.err.println("Error processing line: " + line);
+				}
 			}
 		}
+
 		return members;
 	}
 	

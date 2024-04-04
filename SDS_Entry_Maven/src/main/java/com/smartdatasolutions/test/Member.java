@@ -68,7 +68,11 @@ public class Member {
 
 	public String toCSVString( ) {
 		//TODO implement this
-		return String.join(",", id, firstName, lastName, address, city, zip);
+		String[] fields = {id, firstName, lastName, address, city, zip};
+		for (int i = 0; i < fields.length; i++) {
+			fields[i] = "\"" + fields[i].replace("\"", "\"\"") + "\"";
+		}
+		return String.join(",", fields);
 	}
 
 }

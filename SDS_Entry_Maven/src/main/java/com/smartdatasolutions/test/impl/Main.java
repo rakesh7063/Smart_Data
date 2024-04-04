@@ -6,6 +6,8 @@ import com.smartdatasolutions.test.MemberFileConverter;
 import com.smartdatasolutions.test.MemberImporter;
 
 import java.io.File;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,26 +55,16 @@ public class Main extends MemberFileConverter {
 		return membersByState;
 	}
 
-	public static void main( String[] args ) {
+	public static void main(String[] args) {
 		Main main = new Main();
 		File inputFile = new File("Members.txt");
-		String outputFilePath = "output";
-		String outputFileName = "NY_outputFile.csv";
+		String outputFilePath = "Output";
+		String outputFileName = "outputFile.csv";
 
 		try {
-			createDirectory(outputFilePath);
 			main.convert(inputFile, outputFilePath, outputFileName);
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
-		}
-	}
-	// Create output directory if it doesn't exist
-	private static void createDirectory(String directoryPath) {
-		File directory = new File(directoryPath);
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
-				System.err.println("Failed to create output directory: " + directoryPath);
-			}
 		}
 	}
 
