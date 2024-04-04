@@ -30,8 +30,8 @@ public class MemberImporterImpl implements MemberImporter {
 				String zip = line.substring(116).trim();
 				Member addMember = new Member();
 				addMember.setId(id);
-				addMember.setLastName(lastName);
 				addMember.setFirstName(firstName);
+				addMember.setLastName(lastName);
 				addMember.setAddress(address);
 				addMember.setCity(city);
 				addMember.setZip(zip);
